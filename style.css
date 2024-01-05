@@ -126,7 +126,7 @@
 
 @media screen and (max-width: 600px) {
   .gameArea {
-    width: 100%;
+    width: 90%;
   }
 
   .lines {
@@ -136,12 +136,20 @@
     transform: translateX(-50%);
   }
 
-  .score,
+  .score {
+    font-size: 1em;
+    line-height: 30px;
+    width: 30%; 
+    left: 10%; 
+    z-index: 1000;
+  }
+
   .highScore {
     font-size: 1em;
-    line-height: 50px;
-    width: 30%; /* Adjusted width for better fit on mobile */
-    left: 10%; /* Centering score and highScore div on mobile */
+    line-height: 30px;
+    width: 30%;
+    top: 15px;
+    left: 60%; 
     z-index: 1000;
   }
 }
