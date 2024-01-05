@@ -123,3 +123,10 @@
     text-transform: uppercase;
     box-shadow: 3px 5px 5px rgb(143, 602, 614);
 }
+
+
+@media screen and (max-width: 600px) {
+    .gameArea {
+        width: 80%;
+    }
+}

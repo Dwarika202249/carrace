@@ -27,6 +27,30 @@ let keys = {
 document.addEventListener("keydown", keyDown);
 document.addEventListener("keyup", keyUp);
 
+// adding for mobile plays
+document.addEventListener('touchstart', touchStart);
+document.addEventListener('touchend', touchEnd);
+
+function touchStart(e) {
+    e.preventDefault();
+    // For simplicity, assume one touch point
+    const touchX = e.touches[0].clientX;
+    const touchY = e.touches[0].clientY;
+
+    if (touchX < window.innerWidth / 2) {
+        keys.ArrowLeft = true;
+        keys.ArrowRight = false;
+    } else {
+        keys.ArrowLeft = false;
+        keys.ArrowRight = true;
+    }
+}
+
+function touchEnd() {
+    keys.ArrowLeft = false;
+    keys.ArrowRight = false;
+}
+
 function keyDown(e) {
   e.preventDefault();
   keys[e.key] = true;
