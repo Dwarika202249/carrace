@@ -72,42 +72,42 @@
   position: absolute;
   top: 15px;
   left: 40px;
-  /* background: rgb(17, 69, 82); */
+  background: rgb(17, 69, 82);
   width: 250px;
   line-height: 70px;
   text-align: center;
   color: white;
   font-size: 1.5em;
   font-family: cursive;
-  /* box-shadow: 3px 5px 5px rgb(143, 602, 614); */
+  box-shadow: 3px 5px 5px rgb(143, 602, 614);
 }
 
 .highScore {
   position: absolute;
   top: 15px;
   right: 50px;
-  /* background: rgb(133, 29, 107); */
+  background: rgb(133, 29, 107);
   width: 250px;
   line-height: 70px;
   text-align: center;
   color: white;
   font-size: 1.5em;
   font-family: cursive;
-  /* box-shadow: 3px 5px 5px rgb(143, 602, 614); */
+  box-shadow: 3px 5px 5px rgb(143, 602, 614);
 }
 
 .coinCount {
   position: absolute;
   top: 105px;
   left: 40px;
-  /* background: rgb(147, 163, 0); */
+  background: rgb(147, 163, 0);
   width: 250px;
   line-height: 70px;
   text-align: center;
   color: white;
   font-size: 1.5em;
   font-family: cursive;
-  /* box-shadow: 3px 5px 5px rgb(143, 602, 614); */
+  box-shadow: 3px 5px 5px rgb(143, 602, 614);
 }
 
 .celebration-popup {
@@ -160,28 +160,37 @@
   }
 
   .score {
-    font-size: 10px;
+    font-size: 11px;
     line-height: 30px;
     width: 20%; 
     left: 10%; 
     z-index: 1000;
+    font-weight: bold;
+    background: none;
+    box-shadow: none;
   }
 
   .highScore {
-    font-size: 10px;
+    font-size: 11px;
     line-height: 30px;
     width: 20%;
     top: 15px; 
     z-index: 1000;
+    font-weight: bold;
+    background: none;
+    box-shadow: none;
   }
 
   .coinCount {
-    font-size: 10px;
+    font-size: 11px;
     line-height: 30px;
     width: 20%;
     top: 15px; 
     left: 40%;
     z-index: 1000;
+    font-weight: bold;
+    background: none;
+    box-shadow: none;
  }
 
  .car, .enemy {
