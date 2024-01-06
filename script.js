@@ -4,6 +4,7 @@ const startScreen = document.querySelector(".startScreen");
 const gameArea = document.querySelector(".gameArea");
 const sound = document.getElementById("sound");
 const bgm = document.getElementById("bgm");
+const coinSound = new Audio('./audio/coin.mp3');
 
 // console.log(gameArea);
 
@@ -14,6 +15,7 @@ let player = {
   speed: 15,
   score: 0,
   highScore: 0,
+  coins: 0,
 };
 
 let keys = {
@@ -54,9 +56,8 @@ function touchEnd() {
 function keyDown(e) {
   e.preventDefault();
   keys[e.key] = true;
-  // console.log(e.key);
-  // console.log(keys);
 }
+
 function keyUp(e) {
   e.preventDefault();
   keys[e.key] = false;
@@ -83,6 +84,30 @@ function moveLines() {
     item.y += player.speed;
     item.style.top = item.y + "px";
   });
+}
+
+function moveCoins(car) {
+    let coins = document.querySelectorAll(".coin");
+    coins.forEach(function (item) {
+        if (isCollide(car, item)) {
+            item.style.display = "none"; // hide the coin
+            player.coins++; // increment collected coins
+            coinSound.play(); // play coin collection sound
+            updateCoins(); // update the displayed collected coins
+        }
+
+        if (item.y >= 750) {
+            item.y = -300;
+            item.style.left = Math.floor(Math.random() * 350) + "px";
+            item.style.display = "block"; // show the coin at a new position
+        }
+        item.y += player.speed;
+        item.style.top = item.y + "px";
+    });
+}
+
+function updateCoins() {
+    document.querySelector('.coinCount').innerHTML = "Coins: " + player.coins;
 }
 
 function updateHighScore() {
@@ -127,18 +152,15 @@ function moveEnemy(car) {
   let enemy = document.querySelectorAll(".enemy");
   enemy.forEach(function (item) {
     if (isCollide(car, item)) {
-      // console.log("boom hit");
       const soundFlag = true;
       if (soundFlag) {
         sound.pause();
         sound.currentTime = 0;
         sound.play();
-        // soundFlag = false;
       }
       bgm.pause();
       bgm.currentTime = 0;
       endGame();
-      // HighScore();
     }
 
     if (item.y >= 750) {
@@ -151,15 +173,14 @@ function moveEnemy(car) {
 }
 
 function gamePlay() {
-  // console.log("heyy i am clicked");
   let car = document.querySelector(".car");
   let road = gameArea.getBoundingClientRect();
-  // console.log(road);
 
   if (player.start) {
     bgm.play();
     moveLines();
     moveEnemy(car);
+    moveCoins(car);
 
     if (keys.ArrowUp && player.y > road.top + 70) {
       player.y -= player.speed;
@@ -178,7 +199,6 @@ function gamePlay() {
     car.style.left = player.x + "px";
 
     window.requestAnimationFrame(gamePlay);
-    // console.log(player.score++);
 
     player.score++;
     let ps = player.score - 1;
@@ -187,12 +207,14 @@ function gamePlay() {
 }
 
 function start() {
-  // gameArea.classList.remove('hide');
   startScreen.classList.add("hide");
   gameArea.innerHTML = "";
 
   player.start = true;
   player.score = 0;
+  player.coins = 0; // Reset collected coins
+  updateCoins(); // Initialize displayed coins
+
   window.requestAnimationFrame(gamePlay);
 
   for (x = 0; x < 5; x++) {
@@ -204,7 +226,6 @@ function start() {
   }
   let car = document.createElement("div");
   car.setAttribute("class", "car");
-  // car.innerHTML = "Hey i am ur car";
   gameArea.appendChild(car);
 
   player.x = car.offsetLeft;
@@ -213,11 +234,20 @@ function start() {
   for (x = 0; x < 3; x++) {
     let enemyCar = document.createElement("div");
     enemyCar.setAttribute("class", "enemy");
-    enemyCar.y = (x + 1) * 350 * -1;
+    enemyCar.y = (x + 1) * 350 * - 1;
     enemyCar.style.top = enemyCar.y + "px";
     enemyCar.style.backgroundColor = randomColor();
     enemyCar.style.left = Math.floor(Math.random() * 350) + "px";
     gameArea.appendChild(enemyCar);
+  }
+
+  for (let x = 0; x < 3; x++) {
+    let coin = document.createElement("div");
+    coin.setAttribute("class", "coin");
+    coin.y = (x + 1) * 400 * - 1;
+    coin.style.top = coin.y + "px";
+    coin.style.left = Math.floor(Math.random() * 350) + "px";
+    gameArea.appendChild(coin);
   }
 }
 

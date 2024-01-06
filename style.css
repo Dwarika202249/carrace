@@ -59,11 +59,20 @@
   margin-left: 195px;
 }
 
+.coin {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-image: url('./images/coin.gif'); /* Path to your coin image */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
 .score {
   position: absolute;
   top: 15px;
   left: 40px;
-  background: rgb(46, 182, 216);
+  background: rgb(17, 69, 82);
   width: 250px;
   line-height: 70px;
   text-align: center;
@@ -74,10 +83,24 @@
 }
 
 .highScore {
-  position: fixed;
-  top: 75px;
+  position: absolute;
+  top: 15px;
+  right: 50px;
+  background: rgb(133, 29, 107);
+  width: 250px;
+  line-height: 70px;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  font-family: cursive;
+  box-shadow: 3px 5px 5px rgb(143, 602, 614);
+}
+
+.coinCount {
+  position: absolute;
+  top: 105px;
   left: 40px;
-  background: rgb(233, 127, 206);
+  background: rgb(147, 163, 0);
   width: 250px;
   line-height: 70px;
   text-align: center;
@@ -103,7 +126,7 @@
 
 .startScreen {
   position: absolute;
-  background-color: rgb(224, 72, 72);
+  background-color: rgb(195, 4, 4);
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -137,19 +160,33 @@
   }
 
   .score {
-    font-size: 1em;
+    font-size: 10px;
     line-height: 30px;
-    width: 30%; 
+    width: 20%; 
     left: 10%; 
     z-index: 1000;
   }
 
   .highScore {
-    font-size: 1em;
+    font-size: 10px;
     line-height: 30px;
-    width: 30%;
-    top: 15px;
-    left: 60%; 
+    width: 20%;
+    top: 15px; 
     z-index: 1000;
   }
+
+  .coinCount {
+    font-size: 10px;
+    line-height: 30px;
+    width: 20%;
+    top: 15px; 
+    left: 40%;
+    z-index: 1000;
+ }
+
+ .car, .enemy {
+    width: 40px;
+    height: 60px;
+ }
+
 }
