@@ -194,7 +194,7 @@ function endGame() {
     celebrateNewHighScore();
   } else {
     showGameOverDiv();
-    // goHome();
+    goHome();
   }
 }
 
@@ -224,9 +224,9 @@ function showGameOverDiv() {
 function goHome() {
   const homeButton = document.createElement("div");
   homeButton.classList.add("homeButton");
-  homeButton.innerHTML = "X";
+  homeButton.innerHTML = "HOME";
   homeButton.addEventListener("click", goToStartScreen);
-  console.log("HI");
+  document.body.appendChild(homeButton);
 }
 
 function goToStartScreen() {

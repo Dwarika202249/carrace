@@ -192,25 +192,27 @@
 
 .homeButton {
     position: absolute;
-    top: 40%;
-    left: 50%;
+    top: 20%;
+    left: 45%;
     transform: translateX(-50%, -50%);
     font-size: 13px;
-    /* background-color: #931507; */
-    color: #fff;
+    background-color: white;
+    color: #c0392b;
     border: none;
     padding: 5px 8px;
     border-radius: 5px;
     transition: background-color 0.3s;
     font-weight: bold;
+    z-index: 1000;
 }
 
 .homeButton:hover {
     background-color: #c0392b;
+    color: white;
     cursor: pointer;
 }
 
-.pauseButton {
+/* .pauseButton {
     position: absolute;
     bottom: 20px;
     left: 50%;
@@ -228,7 +230,7 @@
 .pauseButton:hover {
     background-color: #2980b9;
     cursor: pointer;
-}
+} */
 
 @media screen and (max-width: 600px) {
   .gameArea {
