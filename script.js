@@ -232,7 +232,7 @@ function goHome() {
 function goToStartScreen() {
     // Hide the Home button
     const homeButton = document.querySelector(".homeButton");
-    homeButton.classList.add("hide");
+    // homeButton.classList.add("hide");
 
     // Show the start screen
     startScreen.classList.remove("hide");
@@ -241,6 +241,7 @@ function goToStartScreen() {
     const gameOverDiv = document.querySelector('.gameOverDiv');
     if (gameOverDiv) {
         gameOverDiv.remove();
+        homeButton.remove();
     }
 }
 
@@ -253,6 +254,7 @@ function continueGameAfterHighScore() {
 function restartGame() {
   // Remove game over div and start the game again
   document.querySelector(".gameOverDiv").remove();
+  document.querySelector(".homeButton").remove();
   start();
 }
 
