@@ -5,10 +5,10 @@ const gameArea = document.querySelector(".gameArea");
 const sound = document.getElementById("sound");
 const bgm = document.getElementById("bgm");
 const coinSound = new Audio("./audio/coin.mp3");
+const coinCount = document.querySelector(".coinCount");
 
 document.addEventListener("DOMContentLoaded", () => {
-  //   const pauseButton = document.querySelector(".pauseButton");
-  //   pauseButton.addEventListener("click", togglePause);
+  
   const levelButtons = document.querySelectorAll(".startScreen button");
   levelButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -19,28 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-let paused = false;
-
-function togglePause() {
-  if (!player.start) {
-    // Game not started, do nothing
-    return;
-  }
-
-  if (paused) {
-    // Resume game
-    paused = false;
-    bgm.play();
-    gamePlay();
-    pauseButton.textContent = "Pause";
-  } else {
-    // Pause game
-    paused = true;
-    bgm.pause();
-    pauseButton.textContent = "Resume";
-  }
-}
 
 let player = {
   speed: 0,
@@ -160,7 +138,6 @@ function updateCoins() {
   const coinCount = document.querySelector(".coinCount");
   coinCount.classList.remove("hide");
   coinCount.innerHTML = "Coins: " + player.coins;
-//   document.querySelector(".coinCount").innerHTML = "Coins: " + player.coins;
 }
 
 function celebrateNewHighScore() {
@@ -180,13 +157,17 @@ function celebrateNewHighScore() {
     celebrationSound.pause();
     celebrationSound.currentTime = 0;
     // After celebrating new high score, show game over div
-    endGame();
+    // endGame();
+    player.score = player.score - 1;
+    showGameOverDiv();
+    goHome();
+    console.log("first");
+
   }, 5000);
 }
 
 function endGame() {
   player.start = false;
-  // startScreen.classList.remove("hide");
 
   // Check if a new high score is achieved before showing game over div
   updateHighScore();
@@ -198,6 +179,7 @@ function endGame() {
   } else {
     showGameOverDiv();
     goHome();
+    console.log("gameover div");
   }
 }
 
@@ -211,14 +193,12 @@ function updateHighScore() {
 }
 
 function showGameOverDiv() {
-  //   homeButton.classList.remove("hide");
-  // Add event listener for the Home button
   // Show game over div
   const gameOverDiv = document.createElement("div");
   gameOverDiv.classList.add("gameOverDiv");
   gameOverDiv.innerHTML =
     "Game Over <br> Your final score is " +
-    player.score +
+    (player.score) +
     "<br> Click here to restart the Game";
   gameOverDiv.addEventListener("click", restartGame);
   document.body.appendChild(gameOverDiv);
@@ -233,14 +213,11 @@ function goHome() {
 }
 
 function goToStartScreen() {
-    // Hide the Home button
     const homeButton = document.querySelector(".homeButton");
-    // homeButton.classList.add("hide");
 
     // Show the start screen
     startScreen.classList.remove("hide");
 
-    // Remove game over div if it exists
     const gameOverDiv = document.querySelector('.gameOverDiv');
     if (gameOverDiv) {
         gameOverDiv.remove();
@@ -274,6 +251,7 @@ function moveEnemy(car) {
       bgm.pause();
       bgm.currentTime = 0;
       endGame();
+    console.log("third");
     }
 
     if (item.y >= 750) {
@@ -286,10 +264,6 @@ function moveEnemy(car) {
 }
 
 function gamePlay() {
-  //   if(paused) {
-  //     return;
-  //   }
-
   let car = document.querySelector(".car");
   let road = gameArea.getBoundingClientRect();
 
@@ -326,7 +300,6 @@ function gamePlay() {
 function start() {
   startScreen.classList.add("hide");
   gameArea.innerHTML = "";
-//   const coins = document.querySelector(".")
 
   player.start = true;
   player.score = 0;
