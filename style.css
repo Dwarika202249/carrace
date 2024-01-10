@@ -1,125 +1,291 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  overflow: hidden;
 }
 
 .carGame {
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.7)url('./images/bg.jpg');
-    background-blend-mode: darken;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7) url("./images/bg.jpg");
+  background-blend-mode: darken;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .car {
-    width: 50px;
-    height: 80px;
-    position: absolute;
-    bottom: 120px;
-    background-image: url('./images/car.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+  width: 50px;
+  height: 80px;
+  position: absolute;
+  bottom: 120px;
+  background-image: url("./images/car.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .enemy {
-    width: 50px;
-    height: 80px;
-    position: absolute;
-    bottom: 120px;
-    background-image: url('./images/enemytrans.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 13px;
-    border-bottom-right-radius: 13px;
+  width: 50px;
+  height: 80px;
+  position: absolute;
+  bottom: 120px;
+  background-image: url("./images/enemytrans.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
 }
 
 .gameArea {
-    width: 400px;
-    height: 100vh;
-    background: #2d3436;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-    border-right: 7px dashed rgb(197, 194, 194);
-    border-left: 7px dashed rgb(197, 194, 194);
+  width: 400px;
+  height: 100vh;
+  background: #2d3436;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  border-right: 7px dashed rgb(197, 194, 194);
+  border-left: 7px dashed rgb(197, 194, 194);
 }
 
 .lines {
-    width: 10px;
-    height: 100px;
-    background: white;
+  width: 10px;
+  height: 100px;
+  background: white;
+  position: absolute;
+  margin-left: 195px;
+}
+
+.coin {
+    width: 50px;
+    height: 50px;
     position: absolute;
-    margin-left: 195px;
+    background-image: url('./images/coin.gif'); /* Path to your coin image */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 50%;
 }
 
 .score {
-    position: absolute;
-    top: 15px;
-    left: 40px;
-    background: rgb(46, 182, 216);
-    width: 250px;
-    line-height: 70px;
-    text-align: center;
-    color: white;
-    font-size: 1.5em;
-    font-family: cursive;
-    box-shadow: 3px 5px 5px rgb(143, 602, 614);
+  position: absolute;
+  top: 15px;
+  left: 40px;
+  background: rgb(17, 69, 82);
+  width: 250px;
+  line-height: 70px;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  font-family: cursive;
+  box-shadow: 3px 5px 5px rgb(143, 602, 614);
 }
 
 .highScore {
-    position: fixed;
-    top: 75px;
-    left: 40px;
-    background: rgb(233, 127, 206);
-    width: 250px;
-    line-height: 70px;
-    text-align: center;
-    color: white;
-    font-size: 1.5em;
-    font-family: cursive;
-    box-shadow: 3px 5px 5px rgb(143, 602, 614);
+  position: absolute;
+  top: 15px;
+  right: 50px;
+  background: rgb(133, 29, 107);
+  width: 250px;
+  line-height: 70px;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  font-family: cursive;
+  box-shadow: 3px 5px 5px rgb(143, 602, 614);
+}
+
+.coinCount {
+  position: absolute;
+  top: 105px;
+  left: 40px;
+  background: rgb(147, 163, 0);
+  width: 250px;
+  line-height: 70px;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  font-family: cursive;
+  box-shadow: 3px 5px 5px rgb(143, 602, 614);
 }
 
 .celebration-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    font-size: 1.5em;
-    z-index: 2;
-    box-shadow: 3px 5px 5px rgb(143, 602, 614);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 1.5em;
+  z-index: 2;
+  box-shadow: 3px 5px 5px rgb(143, 602, 614);
 }
 
 .startScreen {
-    position: absolute;
-    background-color: rgb(224, 72, 72);
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    z-index: 1;
-    text-align: center;
-    border: 1px solid rgb(218, 40, 159);
-    padding: 15px;
-    margin: auto;
-    width: 50%;
+  position: absolute;
+  background-color: rgb(195, 4, 4);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  z-index: 1;
+  text-align: center;
+  border: 1px solid rgb(218, 40, 159);
+  padding: 15px;
+  margin: auto;
+  width: 40%;
+  letter-spacing: 5;
+  font-size: 20px;
+  word-spacing: 3;
+  line-height: 30px;
+  text-transform: uppercase;
+  box-shadow: 3px 5px 5px rgb(143, 602, 614);
+}
+
+.startScreen p {
+    font-weight: bold;
+}
+
+.startScreen button {
     cursor: pointer;
-    font-family: cursive;
+    font-size: 1.2em;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.startScreen button:hover {
+    background-color: #2980b9;
+    cursor: pointer;
+}
+
+.gameOverDiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(195, 4, 4);
+    color: white;
+    padding: 15px;
+    border: 1px solid rgb(218, 40, 159);
+    cursor: pointer;
+    text-align: center;
+    z-index: 1;
+    width: 50%;
     letter-spacing: 5;
     font-size: 20px;
     word-spacing: 3;
     line-height: 30px;
     text-transform: uppercase;
     box-shadow: 3px 5px 5px rgb(143, 602, 614);
+}
+
+.homeButton {
+    position: absolute;
+    top: 15px;
+    left: 65%;
+    transform: translateX(-50%, -50%);
+    font-size: 13px;
+    background-color: white;
+    color: #c0392b;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+.homeButton:hover {
+    background-color: #c0392b;
+    color: white;
+    cursor: pointer;
+}
+
+/* .pauseButton {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2em;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    z-index: 1000;
+}
+
+.pauseButton:hover {
+    background-color: #2980b9;
+    cursor: pointer;
+} */
+
+@media screen and (max-width: 600px) {
+  .gameArea {
+    width: 90%;
+  }
+
+  .lines {
+    width: 5px;
+    height: 50px;
+    margin-left: 50%; /* Center lines on the screen */
+    transform: translateX(-50%);
+  }
+
+  .score {
+    font-size: 11px;
+    line-height: 30px;
+    width: 20%; 
+    left: 10%; 
+    z-index: 1000;
+    font-weight: bold;
+    background: none;
+    box-shadow: none;
+  }
+
+  .highScore {
+    font-size: 11px;
+    line-height: 30px;
+    width: 20%;
+    top: 15px; 
+    z-index: 1000;
+    font-weight: bold;
+    background: none;
+    box-shadow: none;
+  }
+
+  .coinCount {
+    font-size: 11px;
+    line-height: 30px;
+    width: 20%;
+    top: 15px; 
+    left: 40%;
+    z-index: 1000;
+    font-weight: bold;
+    background: none;
+    box-shadow: none;
+ }
+
+ .car, .enemy {
+    width: 40px;
+    height: 60px;
+ }
+
+ .homeButton {
+    top: 30%;
+    left: 45%;
+ }
+
 }
