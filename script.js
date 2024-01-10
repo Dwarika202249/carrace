@@ -157,7 +157,10 @@ function moveCoins(car) {
 }
 
 function updateCoins() {
-  document.querySelector(".coinCount").innerHTML = "Coins: " + player.coins;
+  const coinCount = document.querySelector(".coinCount");
+  coinCount.classList.remove("hide");
+  coinCount.innerHTML = "Coins: " + player.coins;
+//   document.querySelector(".coinCount").innerHTML = "Coins: " + player.coins;
 }
 
 function celebrateNewHighScore() {
@@ -323,6 +326,7 @@ function gamePlay() {
 function start() {
   startScreen.classList.add("hide");
   gameArea.innerHTML = "";
+//   const coins = document.querySelector(".")
 
   player.start = true;
   player.score = 0;
