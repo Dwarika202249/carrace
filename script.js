@@ -77,17 +77,35 @@ function setDifficulty(difficulty) {
 
 function touchStart(e) {
   e.preventDefault();
+
   // For simplicity, assume one touch point
   const touchX = e.touches[0].clientX;
   const touchY = e.touches[0].clientY;
 
-  if (touchX < window.innerWidth / 2) {
-    keys.ArrowLeft = true;
-    keys.ArrowRight = false;
-  } else {
-    keys.ArrowLeft = false;
-    keys.ArrowRight = true;
-  }
+  const pauseButton = document.querySelector(".pauseButton");
+
+    // Check if the touch event occurred on the pause button
+    const isOnPauseButton = (
+        touchX >= pauseButton.offsetLeft &&
+        touchX <= pauseButton.offsetLeft + pauseButton.offsetWidth &&
+        touchY >= pauseButton.offsetTop &&
+        touchY <= pauseButton.offsetTop + pauseButton.offsetHeight
+    );
+
+    // If the touch event is on the pause button, handle pause action only
+    if (isOnPauseButton) {
+      // togglePause();
+      return
+    } else {
+        // Handle car movement logic
+        if (touchX < window.innerWidth / 2) {
+            keys.ArrowLeft = true;
+            keys.ArrowRight = false;
+        } else {
+            keys.ArrowLeft = false;
+            keys.ArrowRight = true;
+        }
+    }
 }
 
 // Adding this event listener with the { passive: false } option for removing paasive warning for touch event in mobile
@@ -208,8 +226,8 @@ function updateHighScore() {
 }
 
 function showGameOverDiv() {
-  const pause = document.querySelector(".pauseButton")
-  pause.classList.add("hide")
+  const pause = document.querySelector(".pauseButton");
+  pause.classList.add("hide");
   // Show game over div
   const gameOverDiv = document.createElement("div");
   gameOverDiv.classList.add("gameOverDiv");
