@@ -8,7 +8,6 @@ const coinSound = new Audio("./audio/coin.mp3");
 const coinCount = document.querySelector(".coinCount");
 
 document.addEventListener("DOMContentLoaded", () => {
-  
   const levelButtons = document.querySelectorAll(".startScreen button");
   levelButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -26,6 +25,7 @@ let player = {
   highScore: 0,
   newHighScore: false,
   coins: 0,
+  paused: false,
 };
 
 let keys = {
@@ -54,23 +54,58 @@ const difficultyLevels = {
 let currentDifficulty = "easy";
 setDifficulty(currentDifficulty);
 
+// Add these lines near the top of your script.js
+const pauseButton = document.querySelector(".pauseButton");
+pauseButton.addEventListener("click", togglePause);
+
+// Add this function at the end of your script.js
+function togglePause() {
+  player.paused = !player.paused;
+  if (player.paused) {
+    pauseButton.textContent = "▶️";
+    bgm.pause();
+  } else {
+    pauseButton.textContent = "⏸️";
+    window.requestAnimationFrame(gamePlay);
+    bgm.play();
+  }
+}
+
 function setDifficulty(difficulty) {
   player.speed = difficultyLevels[difficulty].speed;
 }
 
 function touchStart(e) {
   e.preventDefault();
+
   // For simplicity, assume one touch point
   const touchX = e.touches[0].clientX;
   const touchY = e.touches[0].clientY;
 
-  if (touchX < window.innerWidth / 2) {
-    keys.ArrowLeft = true;
-    keys.ArrowRight = false;
-  } else {
-    keys.ArrowLeft = false;
-    keys.ArrowRight = true;
-  }
+  const pauseButton = document.querySelector(".pauseButton");
+
+    // Check if the touch event occurred on the pause button
+    const isOnPauseButton = (
+        touchX >= pauseButton.offsetLeft &&
+        touchX <= pauseButton.offsetLeft + pauseButton.offsetWidth &&
+        touchY >= pauseButton.offsetTop &&
+        touchY <= pauseButton.offsetTop + pauseButton.offsetHeight
+    );
+
+    // If the touch event is on the pause button, handle pause action only
+    if (isOnPauseButton) {
+      // togglePause();
+      return
+    } else {
+        // Handle car movement logic
+        if (touchX < window.innerWidth / 2) {
+            keys.ArrowLeft = true;
+            keys.ArrowRight = false;
+        } else {
+            keys.ArrowLeft = false;
+            keys.ArrowRight = true;
+        }
+    }
 }
 
 // Adding this event listener with the { passive: false } option for removing paasive warning for touch event in mobile
@@ -141,6 +176,8 @@ function updateCoins() {
 }
 
 function celebrateNewHighScore() {
+  const pause = document.querySelector(".pauseButton");
+  pause.classList.add("hide")
   // Show celebration pop-up
   const celebrationPopup = document.createElement("div");
   celebrationPopup.classList.add("celebration-popup");
@@ -161,13 +198,12 @@ function celebrateNewHighScore() {
     player.score = player.score - 1;
     showGameOverDiv();
     goHome();
-    console.log("first");
-
   }, 5000);
 }
 
 function endGame() {
   player.start = false;
+  player.paused = !player.paused;
 
   // Check if a new high score is achieved before showing game over div
   updateHighScore();
@@ -179,7 +215,6 @@ function endGame() {
   } else {
     showGameOverDiv();
     goHome();
-    console.log("gameover div");
   }
 }
 
@@ -193,12 +228,14 @@ function updateHighScore() {
 }
 
 function showGameOverDiv() {
+  const pause = document.querySelector(".pauseButton");
+  pause.classList.add("hide");
   // Show game over div
   const gameOverDiv = document.createElement("div");
   gameOverDiv.classList.add("gameOverDiv");
   gameOverDiv.innerHTML =
     "Game Over <br> Your final score is " +
-    (player.score) +
+    player.score +
     "<br> Click here to restart the Game";
   gameOverDiv.addEventListener("click", restartGame);
   document.body.appendChild(gameOverDiv);
@@ -213,16 +250,16 @@ function goHome() {
 }
 
 function goToStartScreen() {
-    const homeButton = document.querySelector(".homeButton");
+  const homeButton = document.querySelector(".homeButton");
+  player.paused = false;
+  // Show the start screen
+  startScreen.classList.remove("hide");
 
-    // Show the start screen
-    startScreen.classList.remove("hide");
-
-    const gameOverDiv = document.querySelector('.gameOverDiv');
-    if (gameOverDiv) {
-        gameOverDiv.remove();
-        homeButton.remove();
-    }
+  const gameOverDiv = document.querySelector(".gameOverDiv");
+  if (gameOverDiv) {
+    gameOverDiv.remove();
+    homeButton.remove();
+  }
 }
 
 function continueGameAfterHighScore() {
@@ -235,6 +272,7 @@ function restartGame() {
   // Remove game over div and start the game again
   document.querySelector(".gameOverDiv").remove();
   document.querySelector(".homeButton").remove();
+  player.paused = !player.paused;
   start();
 }
 
@@ -251,7 +289,6 @@ function moveEnemy(car) {
       bgm.pause();
       bgm.currentTime = 0;
       endGame();
-    console.log("third");
     }
 
     if (item.y >= 750) {
@@ -267,7 +304,8 @@ function gamePlay() {
   let car = document.querySelector(".car");
   let road = gameArea.getBoundingClientRect();
 
-  if (player.start) {
+  // if (player.start) {
+  if (!player.paused) {
     bgm.play();
     moveLines();
     moveEnemy(car);
@@ -300,6 +338,8 @@ function gamePlay() {
 function start() {
   startScreen.classList.add("hide");
   gameArea.innerHTML = "";
+  const pause = document.querySelector(".pauseButton");
+  pause.classList.remove("hide");
 
   player.start = true;
   player.score = 0;
@@ -330,6 +370,7 @@ function start() {
     enemyCar.style.backgroundColor = randomColor();
     enemyCar.style.left = Math.floor(Math.random() * 350) + "px";
     gameArea.appendChild(enemyCar);
+    // console.log("enemy hoon");
   }
 
   for (let x = 0; x < 3; x++) {
@@ -339,6 +380,7 @@ function start() {
     coin.style.top = coin.y + "px";
     coin.style.left = Math.floor(Math.random() * 350) + "px";
     gameArea.appendChild(coin);
+    // console.log("coin hoon");
   }
 }
 
