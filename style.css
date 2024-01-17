@@ -224,7 +224,6 @@
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
-    font-weight: bold;
     cursor: pointer;
     z-index: 1000;
 }
@@ -299,7 +298,7 @@
  }
 
  .pauseButton {
-  right: 10px;
+  right: 12px;
  }
 
 }
