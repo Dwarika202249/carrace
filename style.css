@@ -214,6 +214,20 @@
     cursor: pointer;
 }
 
+.pauseButton {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10000;
+}
+
 @media screen and (max-width: 600px) {
     .startScreen {
         font-size: 14px;
