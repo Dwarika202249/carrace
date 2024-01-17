@@ -216,16 +216,17 @@
 
 .pauseButton {
     position: absolute;
-    bottom: 20px;
-    left: 50%;
+    bottom: 10px;
+    right: 23%;
     transform: translateX(-50%);
     background-color: #3498db;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
     border-radius: 5px;
+    font-weight: bold;
     cursor: pointer;
-    z-index: 10000;
+    z-index: 1000;
 }
 
 @media screen and (max-width: 600px) {
@@ -295,6 +296,11 @@
  .homeButton {
     top: 30%;
     left: 45%;
+ }
+
+ .pauseButton {
+  right: 10px;
+  background: none;
  }
 
 }

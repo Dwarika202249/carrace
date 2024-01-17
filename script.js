@@ -62,24 +62,14 @@ pauseButton.addEventListener("click", togglePause);
 function togglePause() {
   player.paused = !player.paused;
   if (player.paused) {
-    pauseButton.textContent = "<>";
+    pauseButton.textContent = "▶";
     bgm.pause();
-    console.log("pause hua");
   } else {
     pauseButton.textContent = "||";
     window.requestAnimationFrame(gamePlay);
-    console.log("play hoon");
     bgm.play();
   }
 }
-
-// function togglePause() {
-//     player.paused = !player.paused;
-//     if (!player.paused) {
-//         // If unpausing, request the next animation frame
-//         window.requestAnimationFrame(gamePlay);
-//     }
-// }
 
 function setDifficulty(difficulty) {
   player.speed = difficultyLevels[difficulty].speed;
