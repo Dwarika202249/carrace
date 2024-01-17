@@ -176,6 +176,8 @@ function updateCoins() {
 }
 
 function celebrateNewHighScore() {
+  const pause = document.querySelector(".pauseButton");
+  pause.classList.add("hide")
   // Show celebration pop-up
   const celebrationPopup = document.createElement("div");
   celebrationPopup.classList.add("celebration-popup");
