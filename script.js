@@ -62,10 +62,10 @@ pauseButton.addEventListener("click", togglePause);
 function togglePause() {
   player.paused = !player.paused;
   if (player.paused) {
-    pauseButton.textContent = "▶";
+    pauseButton.textContent = "▶️";
     bgm.pause();
   } else {
-    pauseButton.textContent = "||";
+    pauseButton.textContent = "⏸️";
     window.requestAnimationFrame(gamePlay);
     bgm.play();
   }

@@ -217,12 +217,12 @@
 .pauseButton {
     position: absolute;
     bottom: 10px;
-    right: 23%;
+    left: 30%;
     transform: translateX(-50%);
-    background-color: #3498db;
     color: #fff;
+    font-size: 30px;
     border: none;
-    padding: 5px 10px;
+    /* padding: 5px 10px; */
     border-radius: 5px;
     cursor: pointer;
     z-index: 1000;
@@ -298,7 +298,7 @@
  }
 
  .pauseButton {
-  right: 12px;
+  left: 88%;
  }
 
 }
