@@ -214,6 +214,20 @@
     cursor: pointer;
 }
 
+.pauseButton {
+    position: absolute;
+    bottom: 10px;
+    left: 30%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 30px;
+    border: none;
+    /* padding: 5px 10px; */
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
 @media screen and (max-width: 600px) {
     .startScreen {
         font-size: 14px;
@@ -281,6 +295,10 @@
  .homeButton {
     top: 30%;
     left: 45%;
+ }
+
+ .pauseButton {
+  left: 88%;
  }
 
 }
